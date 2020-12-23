@@ -26,6 +26,7 @@ func TestParseTickers(t *testing.T) {
 			Volume:              7347.30314117,
 			High:                24013.667964,
 			Low:                 22348,
+			Hash:                "5cdadf661064ccf0f0e36ee50ed60908",
 		},
 		{
 			Symbol:              "tBSVUSD",
@@ -39,6 +40,7 @@ func TestParseTickers(t *testing.T) {
 			Volume:              2813.31065912,
 			High:                173.5,
 			Low:                 164.32,
+			Hash:                "3f220b61eaaa8cce7815c2215031db2f",
 		},
 	}
 

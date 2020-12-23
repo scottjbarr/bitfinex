@@ -2,6 +2,8 @@ package bitfinex
 
 import (
 	"bytes"
+	"crypto/md5"
+	"fmt"
 	"strings"
 )
 
@@ -18,6 +20,7 @@ type Ticker struct {
 	Volume              float32
 	High                float32
 	Low                 float32
+	Hash                string
 }
 
 // ParseTickers parses an array of Tickers.
@@ -114,6 +117,9 @@ func ParseTicker(b []byte) (*Ticker, error) {
 		return nil, err
 	}
 
+	// add a hash of the data to make it easy to check if a Ticker hash changed.
+	hash := md5.Sum(b)
+
 	t := Ticker{
 		Symbol:              stripStringData(parts[0]),
 		Bid:                 bid,
@@ -126,6 +132,7 @@ func ParseTicker(b []byte) (*Ticker, error) {
 		Volume:              volume,
 		High:                high,
 		Low:                 low,
+		Hash:                fmt.Sprintf("%x", hash),
 	}
 
 	return &t, nil
