@@ -3,8 +3,14 @@ package bitfinex
 import (
 	"bytes"
 	"crypto/md5"
+	"errors"
 	"fmt"
 	"strings"
+)
+
+var (
+	// ErrEmptyBody is returned when an empty body is encountered during parsing.
+	ErrEmptyBody = errors.New("Empty body")
 )
 
 // Ticker represents a payload for a ticker for a trading pair.
@@ -25,6 +31,10 @@ type Ticker struct {
 
 // ParseTickers parses an array of Tickers.
 func ParseTickers(body []byte) ([]Ticker, error) {
+	if len(body) == 0 {
+		return nil, ErrEmptyBody
+	}
+
 	// remove first/last square braces
 	body = body[1 : len(body)-2]
 
