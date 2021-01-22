@@ -9,18 +9,18 @@ import (
 
 // Ticker represents a payload for a ticker for a trading pair.
 type Ticker struct {
-	Symbol              string
-	Bid                 float32
-	BidSize             float32
-	Ask                 float32
-	AskSize             float32
-	DailyChange         float32
-	DailyChangeRelative float32
-	LastPrice           float32
-	Volume              float32
-	High                float32
-	Low                 float32
-	Hash                string
+	Symbol              string  `json:"symbol,omitempty"`
+	Bid                 float32 `json:"bid,omitempty"`
+	BidSize             float32 `json:"bid_size,omitempty"`
+	Ask                 float32 `json:"ask,omitempty"`
+	AskSize             float32 `json:"ask_size,omitempty"`
+	DailyChange         float32 `json:"daily_change,omitempty"`
+	DailyChangeRelative float32 `json:"daily_change_rel,omitempty"`
+	LastPrice           float32 `json:"last_price,omitempty"`
+	Volume              float32 `json:"vol,omitempty"`
+	High                float32 `json:"high,omitempty"`
+	Low                 float32 `json:"low,omitempty"`
+	Hash                string  `json:"-"`
 }
 
 // ParseTickers parses an array of Tickers.
